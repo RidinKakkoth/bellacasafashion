@@ -1,0 +1,96 @@
+   <link rel="stylesheet" href="css/loginstyle.css">
+<!--================login_part Area =================-->
+    <section class="login_part padding_top">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome Back ! <br>
+                                Please Sign Up now</h3>
+                            <form class="row contact_form" id="signup-form" action="/signup" method="post" novalidate>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="name" name="name" value=""
+                                        placeholder="Username" required minlength="3">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="email" class="form-control" id="email" name="email" value=""
+                                        placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="number" name="phone" value=""
+                                        placeholder="phone number" required minlength="10">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="password" name="password" value=""
+                                        placeholder="Password" required minlength="6">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="creat_account d-flex align-items-center">
+                                        {{!-- <input type="checkbox" id="f-option" name="selector">
+                                        <label for="f-option">Remember me</label> --}}
+                                    </div>
+                                    <button type="submit" value="submit" style="background-color: #607e85;" class="btn_3">
+                                        Register
+                                    </button>
+                                </div>
+                                <p class="text-center fw-bold text-success">{{#if message}}
+                        {{message}}
+                      {{/if}}
+                    </p>
+                    <p class="text-center fw-bold text-danger">{{#if
+                        failmessage
+                      }}
+                        {{failmessage}}
+                      {{/if}}</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                                                   <img class="mb-5" src="/img/logo.png " alt="ddddd" style="width: 12vw;">
+
+                            <h2>Welcomes You .................................</h2>
+                            <p>Already have an account?</p>
+                            <a href="/signin" class="btn_3">Sign in here</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </section>
+
+    <style>
+                 .login_part .login_part_text {
+    
+       /*background-image: -webkit-linear-gradient(16deg, #000000 0%, #573d35 64%, #ffba00 100%)*/
+              background-image: -webkit-linear-gradient(16deg, #25606c 0%, #cac1be 64%, #ffba00 100%);
+
+   
+}
+                                    
+
+    </style>
+
+    <script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', e => {
+    if (!form.checkValidity()) {
+      e.preventDefault(); 
+   
+    }
+    form.classList.add('was-validated');
+  });
+</script>

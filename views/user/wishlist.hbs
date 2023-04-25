@@ -1,0 +1,127 @@
+   <script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Wishlist</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>wishlist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each stocks}}
+                                <tr>
+                                    
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img style="width: 62px;" src="/uploads/{{image.[0]}}" alt="">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6>{{name}}</h6>
+                                            <h5>Rs.{{price}}</h5>
+                                        </div>
+                                    </td>
+                                    <td >
+                                    
+                                            <a href="" onclick="addToCart('{{this._id}}')"><i class="fa-solid fa-cart-plus fa-2xl" style="color: #51291f;"></i></a>
+                                    
+                                    </td>
+                                    
+                                    <td > <a style="cursor: pointer;" onclick="deleteWishlist('{{this._id}}')"><i class="fa-solid fa-heart-circle-xmark fa-2xl" style="color: #c11010;"></i></a></td>
+                                   
+                                </tr>
+{{/each}}
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="/shop">Continue Shopping</a>
+                            </div>
+                        </div>
+ 
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+    <script>
+        
+ function addToCart(productId) {
+        event.preventDefault()
+        
+
+        axios.post('/cart', {
+
+            product: productId,
+
+        })
+            .then(function (response) {
+                console.log(response.data.stock);
+                if(response.data.stock>0){
+
+                                swal("Product added to cart!", "Product added to cart!", "success");
+                }
+                else{
+                                swal("Product is Out of Stock!", "Product is Out of Stock!", "error");
+
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert('hierror')
+
+
+            });
+
+    }
+
+
+          function deleteWishlist(prodId){
+
+     axios.delete(`/wishlist/${prodId}`).then((response)=>{
+        swal({text: "Product removed from wislist!",
+          icon: "error"}).then(()=>{
+            location.replace("/loadwishlist")
+          })
+          
+        
+        console.log(response)
+        
+    }).catch((error)=>{
+        console.log(error)
+    })
+          }
+    </script>

@@ -1,0 +1,71 @@
+      <link rel="stylesheet" href="css/loginstyle.css">
+
+
+   
+    <section class="login_part padding_top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+               
+                      
+                        <div class="login_part_text_iner">
+                       <img class="mb-5" src="/img/logo.png " alt="ddddd" style="width: 12vw;">
+                            <h2>Welcome Admin</h2>
+                            <p>Indias mens fashion world welcomes YoU</p>
+                            {{!-- <a href="/signup" class="btn_3">Create an Account</a> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+
+
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome Back ! <br>
+                                Please Sign in now</h3>
+                            <form class="row contact_form" action="/admin" method="post" novalidate="novalidate">
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="email" class="form-control" id="name" name="email" value=""
+                                        placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="password" name="password" value=""
+                                        placeholder="Password" required minlength="6">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="creat_account d-flex align-items-center">
+                                        {{!-- <input type="checkbox" id="f-option" name="selector"> --}}
+                                        {{!-- <label for="f-option">Remember me</label> --}}
+                                         <p class="fw-bold text-danger">{{failmessage}}</p>
+                                    </div>
+                                    <button type="submit" value="submit" class="btn_3" style="background-color: #2c4ea3;">
+                                        log in
+                                    </button>
+                                    {{!-- <a class="lost_pass" href="#">forgot password?</a> --}}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+         .login_part .login_part_text {
+    
+background-image: -webkit-linear-gradient(16deg, #214aa1 0%, #f99fd4 64%, #ffba00 100%);
+   
+}
+    </style>
+        <script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', e => {
+    if (!form.checkValidity()) {
+      e.preventDefault(); 
+   
+    }
+    form.classList.add('was-validated');
+  });
+</script>

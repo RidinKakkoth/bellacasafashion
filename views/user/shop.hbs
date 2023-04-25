@@ -1,0 +1,257 @@
+   <script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shop</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/home">Home</a>
+                            <span>Shop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3">
+                    <div class="shop__sidebar">
+                        <div class="shop__sidebar__search">
+    <form action="/shop" method="GET">
+        <input type="text" id="search-input" name="search" placeholder="Search products...">
+        <input type="submit" value="Search">
+        <input type="hidden" name="categoryId" value="{{categoryId}}"> <!-- Include the categoryId as a hidden field -->
+        <input type="hidden" name="minPrice" value="{{minPrice}}">
+        <input type="hidden" name="maxPrice" value="{{maxPrice}}">
+        <input type="hidden" name="sortValue" value="{{sortValue}}">
+        
+
+<!--optional movable bar-->
+
+{{!--      
+        <div class="shop__sidebar__price-range">
+            <label for="minPrice">Min-Price</label>
+            <input type="range" id="minPrice" name="minPrice" min="0" max="5000" step="100" value="{{minPrice}}" />
+            <label for="maxPrice">Max-Price</label>
+            <input type="range" id="maxPrice" name="maxPrice" min="0" max="5000" step="100" value="{{maxPrice}}" />
+            <span class="price-range-values">Rs {{minPrice}} - Rs {{maxPrice}}</span>
+        </div> --}}
+    </form>
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="shop__sidebar__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__categories">
+                                                <ul class="nice-scroll">
+                                                   <li><a href="/shop" style="text-decoration: none;">All Categories</a> </li>
+                                                    {{!-- {{#each categoryList}}
+                                                    <li><a href="/filtercategory/{{_id}}">{{name}} <span>{{countProducts}}</span> </a></li>
+                                                    {{/each}} --}}
+                                                    {{#each categoryList}}
+                                                    <li><a href="?categoryId={{_id}}">{{name}} <span></span> </a></li>
+                                                    {{/each}}
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                 
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <ul>
+                                                    <li><a href="?minPrice=0&maxPrice=499&categoryId={{categoryId}}&sortValue={{sortValue}}">Under 500</a></li>
+                                                    <li><a href="?minPrice=500&maxPrice=999&categoryId={{categoryId}}&sortValue={{sortValue}}">Rs 500.00 - Rs999.00</a></li>
+                                                    <li><a href="?minPrice=1000&maxPrice=1999&categoryId={{categoryId}}&sortValue={{sortValue}}">Rs 1000.00 - Rs1999.00</a></li>
+                                                    <li><a href="?minPrice=2000&maxPrice=2499&categoryId={{categoryId}}&sortValue={{sortValue}}">Rs 2000.00 - Rs2499.00</a></li>
+                                                    <li><a href="?minPrice=2500&maxPrice=4999&categoryId={{categoryId}}&sortValue={{sortValue}}">Rs 2500.00 - Rs4999.00</a></li>
+                                                    <li><a href="?minPrice=5000&maxPrice=25000&categoryId={{categoryId}}&sortValue={{sortValue}}">Above Rs 5000.00</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="shop__product__option">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__left">
+                                    {{!-- <p>Showing 1–12 of 126 results</p> --}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__right">
+                                    <p>Sort by Price:</p>
+                                    <a style="color: #080113;" href="?sortValue=1&categoryId={{categoryId}}"><i class="fa-solid fa-arrow-down"></i></a>
+                                    <a style="color: #080113;" href="?sortValue=-1&categoryId={{categoryId}}"><i class="fa-solid fa-arrow-up"></i></a>
+                                    {{!-- <select id="mySelect"  onchange="redirectToUrl()"  > --}}
+                                        {{!-- <option  value="?sortValue=1">Low To High</option> --}}
+                                        {{!-- <option  value="?sortValue=-1">High To Low </option> --}}
+                                          {{!-- <option value="?sortValue=1" {{#isEqual selectedOption '1'}}selected{{/isEqual}}>Low To High</option>
+            <option value="?sortValue=-1" {{#isEqual selectedOption '-1'}}selected{{/isEqual}}>High To Low </option> --}}
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        {{#each productsData}}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div  style="cursor:pointer;" class="product__item__pic set-bg" data-setbg="/uploads/{{image.[0]}}">
+                                    
+                                    <ul class="product__hover">
+                                        <li><a href="" onclick="addToWishlist(event, '{{this._id}}')">  <i class="fa-solid fa-heart fa-lg" style="color: #ff0000;"></i></a></li>
+                                        <li><img onclick="location.href='/productview/{{_id}}';"  src="img/icon/search.png" alt=""></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>{{name}}</h6>
+                                    <a href="" onclick="addToCart('{{this._id}}')" class="add-cart">+ Add To Cart</a>
+                                 
+                                    <h5>{{price}} ₹</h5>
+                                </div>
+                            
+                            </div>       
+                        </div>
+                       {{/each}}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12"  >
+                            <div >
+
+                            {{{pagination totalPages currentPage}}}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+    
+ 
+</body>
+
+<script>
+   
+ function addToCart(productId) {
+        event.preventDefault()
+        
+
+        axios.post('/cart', {
+
+            product: productId,
+
+        })
+            .then(function (response) {
+                console.log(response.data.stock);
+                if(response.data.stock>0){
+
+                                swal("Product added to cart!", "Product added to cart!", "success");
+                }
+                else{
+                                swal("Product is Out of Stock!", "Product is Out of Stock!", "error");
+
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert('hierror')
+
+
+            });
+
+    }
+
+    
+  function addToWishlist(event, productId){
+    event.preventDefault();
+
+    axios.post("/wishlist",{
+        product:productId
+    }).then((response)=>{
+        swal("Product added to wishlist!", "Product added to Wishlist!", "success");
+        
+        console.log(response)
+        
+    }).catch((error)=>{
+        console.log(error)
+    })
+}
+
+//low high
+function redirectToUrl() {
+  var selectElement = document.getElementById("mySelect");
+  var selectedValue = selectElement.value;
+
+  if (selectedValue !== "") {
+    window.location.href = selectedValue;
+  }
+}
+
+
+
+</script>
+
+<script>
+    // Get the input elements and span for displaying values
+    var minPriceInput = document.getElementById('minPrice');
+    var maxPriceInput = document.getElementById('maxPrice');
+    var priceRangeValues = document.querySelector('.price-range-values');
+
+    // Update the span with the initial values
+    priceRangeValues.textContent = 'Rs ' + minPriceInput.value + ' - Rs ' + maxPriceInput.value;
+
+    // Add event listeners for input change
+    minPriceInput.addEventListener('input', updatePriceRange);
+    maxPriceInput.addEventListener('input', updatePriceRange);
+
+    function updatePriceRange() {
+        // Update the span with the selected min and max prices
+        priceRangeValues.textContent = 'Rs ' + minPriceInput.value + ' - Rs ' + maxPriceInput.value;
+    }
+</script>

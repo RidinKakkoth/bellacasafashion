@@ -1,0 +1,471 @@
+
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shop</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/home">Home</a>
+                            <span>Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+  <!-- ========================= SECTION CONTENT ========================= -->
+  <div class="m-5">
+    <section class="section-conten padding-y bg">
+
+      <div class="container">
+        <div class="row">
+          <aside class="col-md-3">
+            <!--   SIDEBAR   -->
+            <ul class="list-group">
+              <a class="list-group-item active" href="#" style="background-color: #b19361; border-color: #fff;"
+                onclick="myaccount('changer3');">My Account </a>
+              <a class="list-group-item" style="color: black;" href="/loadwishlist"> My wishlist </a>
+              <a  style="color: black;" type="button" class="list-group-item" data-toggle="modal" data-target="#staticBackdrop"> Wallet </a>
+              {{!-- <a class="list-group-item" style="color: black;" href="/selectaddress" onclick=""> Manage
+                address </a> --}}
+              <a class="list-group-item" style="color: black;" href="/myorder" onclick=""> My orders
+              </a>
+              <a class="list-group-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="color: black;"> Change
+                password </a>
+
+            </ul>
+            <br>
+            {{!-- <a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log
+                out</span> </a> --}}
+            <!--   SIDEBAR .//END   -->
+          </aside>
+          <div class="col-lg-8 ">
+            <div id="changer">
+              {{!-- <button type="button" class="btn btn-light mb-3 "
+                style="color: #fff; background-color: #b19361; text-decoration: none; " data-bs-toggle="modal"
+                data-bs-target="#userDetails" data-bs-whatever="@getbootstrap">Edit</button> --}}
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row ">
+                    <div class="col-sm-3 ">
+                      <p class="mb-0">Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.name}}</p>
+                    </div>
+                  </div>
+                  <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.email}}</p>
+                    </div>
+                  </div>
+                  <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.phone}}</p>
+                    </div>
+                  </div>
+                                    <hr style="background-color: black;">
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">House</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.house}}</p>
+                    </div>
+                  </div>
+                                    <hr style="background-color: black;">
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">City</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.city}}</p>
+                    </div>
+                  </div>
+                                    <hr style="background-color: black;">
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">State</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.state}}</p>
+                    </div>
+                  </div>
+                                    <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Pincode</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.pincode}}</p>
+                    </div>
+                  </div>
+                                    <hr style="background-color: black;">
+                                    
+
+                </div>
+                <div class="w-25  ">
+                    <a class="list-group-item" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddressModal"  style="background-color: #b19361; color: #fff;"> Update Details</a>                         
+                </div>
+              </div>
+            </div>
+       
+          </div>
+
+          <!-- row.// -->
+          
+        </div>
+
+      <!--                              password change   -->
+
+
+    <div class="container">
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100 text-center">Change Password</h4>
+                        <button type="button" style="color: red;" class="close " data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!-- adding Bootstrap Form here -->
+
+                        <form id="myForm" class="needs-validation"  method="post" novalidate>
+                            <div class="container">
+
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">Current Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="currentpassword_id" name="currentpassword"
+                                            placeholder="Current Password" required />
+                                            <div class="invalid-feedback">
+                                                Please enter current password.
+                                              </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="validationCustomUsername"  class="col-sm-2 col-form-label">New Password</label>
+                                    <div class="input-group col-sm-10">
+                                      {{!-- <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                      </div> --}}
+                                      <input type="text" class="form-control" id="newpassword1_id" name="newpassword" placeholder="New Password" aria-describedby="inputGroupPrepend" required>
+                                      <div class="invalid-feedback">
+                                        Please enter new password.
+                                      </div>
+                                    </div>
+                                </div>
+
+                                  <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">Confirm New Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="newpassword2_id" name="confirmnewpassword"
+                                            placeholder="New Password" required />
+                                            <div class="invalid-feedback">
+                                                Please enter new password.
+                                              </div>
+                                    </div>
+                                   </div>
+
+                                 <div class="text-center">
+                                 <button class="btn btn-success" type="submit">Submit</button>
+                                 </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- wallet modal-->
+
+
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="
+    width: 401px;
+">
+            <div class="modal-bodywallet">
+                <div class="text-right me-2"><a href=""> <i class="fa-solid fa-xmark fa-2xl" style="color: #0e598a;" data-dismiss="modal"></i></a> </div>
+                
+<div class="d-flex ">
+                          <img src="/img/coupon/wallet.png" width="200">
+                         <div>
+ <h5  class="text-white font-weight-bold fs-5 ms-4 mt-2">Wallet Balance</h5>
+                          <hr>
+                          <h5 class="ms-5 text-white">₹ <span class="fs-5 font-weight-bold text-success">{{userData.wallet}}</span></h5>
+                         </div>                         
+</div>                                   
+                        <div class="  ">                        
+                        </div>
+                        <div>
+                        </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+   
+    </section>
+  </div>
+
+
+        <!--                              user detail change   -->
+
+
+    <div class="container">
+
+        <!-- The Modal -->
+        <div class="modal" id="myAddressModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100 text-center">Update Details</h4>
+                        <button type="button" style="color: red;" class="close " data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!-- adding Bootstrap Form here -->
+
+                        <form id="myAddressForm" class="needs-validation"  method="post" novalidate>
+                            <div class="container">
+
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="currentpassword_id" name="name" value="{{userData.name}}"
+                                            placeholder="Name" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">Mobile</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="currentpassword_id" name="phone"  value="{{userData.phone}}"
+                                            placeholder="Mobile" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">House</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="currentpassword_id" name="house" value="{{userData.house}}"
+                                            placeholder="House" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">City</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="currentpassword_id" name="city" value="{{userData.city}}"
+                                            placeholder="City" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">State</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="currentpassword_id" name="state" value="{{userData.state}}"
+                                            placeholder="State" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-2 col-form-label">Pincode</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="currentpassword_id" name="pincode" value="{{userData.pincode}}"
+                                            placeholder="Pincode" required />
+                                    </div>
+                                </div>
+                    
+                                 <div class="text-center">
+                                 <button class="btn btn-success" type="submit">Submit</button>
+                                 </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+  <script>
+     // Example starter JavaScript for disabling form submissions if there are invalid fields
+         /*                   (function () {
+                                'use strict';
+                                window.addEventListener('load', function () {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function (form) {
+                                        form.addEventListener('submit', function (event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+
+                                            
+                                            if(form.checkValidity() === true){
+                                                //enter your code here 
+                                                event.preventDefault();
+                                                 var form_data = {
+                                                     currentpassword : currentpassword_id.value,
+                                                     newpassword1 : newpassword1_id.value,
+                                                     newpassword2 : newpassword2_id.value
+                                                 }  
+        
+                                                 console.log(form_data); //printing form data in Console
+                                                 document.forms[0].reset();    //reseting the form
+                                                 document.getElementById('myForm').classList.remove("was-validated");//reseting the form validation
+
+                                            }
+
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+
+                            */
+
+
+    /*--- ajax for password change ----*/
+$("#myForm").submit((e)=>{
+
+  e.preventDefault() 
+
+  $.ajax({
+    url:"/changepassword",
+    //method:"post",
+    method:"put",
+    data:$("#myForm").serialize(),
+    success:(response)=>{
+      if(response.message=="password changed successfully"){
+        swal({
+          text: response.message,
+          timer: 3000,
+          showConfirmButton: false
+        }).then(()=>{
+          $("#myForm").modal("hide");
+        });
+      }
+      else{
+        swal({
+          text: response.message,
+          timer: 3000,
+          icon: "error",
+          showConfirmButton: false   
+        });
+      }
+    }
+  });
+});
+
+
+
+
+
+    /*--- ajax for address change ----*/
+$("#myAddressForm").submit((e)=>{
+
+  e.preventDefault() 
+
+  $.ajax({
+    url:"/changeUserProfile",
+    //method:"post",
+    method:"put",
+    data:$("#myAddressForm").serialize(),
+    success:(response)=>{
+      if(response.message==" profile updated successfully"){
+        swal({
+          text: response.message,
+          timer: 3000,
+          showConfirmButton: false
+        }).then(()=>{
+          $("#myAddressForm").modal("hide");
+        });
+      }
+      else{
+        swal({
+          text: response.message,
+          timer: 3000,
+          icon: "error",
+          showConfirmButton: false   
+        });
+      }
+    }
+  });
+});
+
+
+
+
+  </script>
+
+
+  <style>
+
+.modal-bodywallet{
+    width: 400px;
+    height:250px;
+    background-color: #081a1f;
+}
+.intro-1{
+
+    font-size: 16px;
+}
+.close{
+   
+    color: #fff;
+}
+.close:hover{
+
+    color: #fff;
+}
+.intro-2{
+
+    font-size: 13px;
+}
+  </style>

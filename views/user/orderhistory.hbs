@@ -1,0 +1,127 @@
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__text">
+          <h4>My Orders
+          </h4>
+          <div class="breadcrumb__links">
+            <a href="/home">Home</a>
+            <span>My Orders</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="container mt-5 mb-5">
+  <!-- Recent Sales -->
+  <div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+      <div class="filter">
+        <a class="icon" href="#" data-bs-toggle="dropdown"><i
+            class="bi bi-three-dots"
+          ></i></a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+          <li class="dropdown-header text-start">
+            <h6>Filter</h6>
+          </li>
+
+          <li><a class="dropdown-item" href="#">Today</a></li>
+          <li><a class="dropdown-item" href="#">This Month</a></li>
+          <li><a class="dropdown-item" href="#">This Year</a></li>
+        </ul>
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">My Orders</h5>
+
+        <table
+          id="producttable"
+          class="table table-striped table-hover datatable"
+        >
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Order No</th>
+              {{! <th scope="col">Address</th> }}
+
+              <th scope="col">Payment</th>
+              <th scope="col">Payment Status</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Order Status</th>
+              <th scope="col">View Products</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each orderHistoryData}}
+              <tr>
+                <td scope="row">{{sliceDate createdAt}}</td>
+                <td>{{_id}}</td>
+                {{!-- <td>{{addressData.name}}</td> --}}
+                <td>{{paymentType}}</td>
+                <td>{{paymentStatus}}</td>
+                <td>₹{{totalAmount}}</td>
+                <td>
+                  {{#isEqual orderStatus "ordered"}}
+                    <button id="status" class="badge bg-warning">
+                      <a
+                        class="text-white"
+                        style="text-decoration: none;"
+                        onclick="  return  confirm('are you want to cancel order?'),
+ cancelOrder('{{_id}}','{{orderStatus}}')"
+                      >Cancel Order</a>
+                    </button>
+                  {{else isEqual orderStatus
+                  "dispatched"}}
+                    <button id="status" class="badge bg-success">
+                      <a
+                        class="text-white"
+                        style="text-decoration: none;"
+                      >{{orderStatus}}</a>
+                    </button>
+                  {{else}}
+                    <button id="status" class="badge bg-danger">
+                      <a
+                        class="text-white"
+                        style="text-decoration: none;"
+                      >{{orderStatus}}</a>
+                    </button>
+                  {{/isEqual}}
+                </td>
+
+                <td>
+                  <button class="badge bg-success"><a
+                      class="text-white"
+                      style="text-decoration: none;"
+                      href="/vieworderitems/{{_id}}"
+                    >View Products</a>
+                  </button></td>
+                {{! <td><span class="badge bg-success">Approved</span></td> }}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div><!-- End Recent Sales -->
+</div>
+
+<script>
+  $(document).ready(function () { $('#producttable').DataTable(); });
+
+</script>
+
+<script>
+
+  function cancelOrder(id,orderStatus){ console.log(orderStatus)
+  if(orderStatus=='cancelled'||orderStatus=='dispatched'){ location.reload() }
+  else { $.ajax({ url:"/cancelorder", data:{ orderId:id }, method:"post",
+  success:(response)=>{ location.reload() } }) } }
+
+</script>

@@ -1,0 +1,91 @@
+body {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+
+p {
+  color: #b3b3b3;
+  font-weight: 300; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+  a, a:hover {
+    text-decoration: none !important; }
+
+.content {
+  height: 100vh; }
+
+.modal {
+  border-radius: 7px;
+  overflow: hidden;
+  background-color: transparent; }
+  .modal .logo a img {
+    width: 30px; }
+  .modal .modal-content {
+    background-color: transparent;
+    border: none;
+    border-radius: 7px; }
+    .modal .modal-content .modal-body {
+      border-radius: 7px;
+      overflow: hidden;
+      color: #fff;
+      padding-left: 0px;
+      padding-right: 0px;
+      -webkit-box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.9); }
+      .modal .modal-content .modal-body h2 {
+        font-size: 18px; }
+      .modal .modal-content .modal-body p {
+        color: #777;
+        font-size: 14px; }
+      .modal .modal-content .modal-body h3 {
+        color: #000;
+        font-size: 22px; }
+      .modal .modal-content .modal-body .close-btn {
+        color: #000; }
+      .modal .modal-content .modal-body .promo-img {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 200px;
+        flex: 0 0 200px; }
+  .modal .main-content {
+    padding-left: 20px;
+    padding-right: 20px; }
+  .modal .coupon {
+    padding: 10px;
+    color: #000;
+    text-align: center;
+    background-color: #fff;
+    border: 2px dashed #6c757d;
+    margin-bottom: 20px; }
+  .modal .cancel {
+    color: gray;
+    font-size: 14px; }
+
+.form-control {
+  border: transparent; }
+  .form-control:active, .form-control:focus, .form-control:hover {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; }
+
+.btn {
+  border-radius: 4px;
+  border: none; }
+  .btn:active, .btn:focus {
+    outline: none;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; }
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+.logo img {
+  width: 70px; }
+
+.bg-4 {
+  background: #fff4e4; }

@@ -1,0 +1,420 @@
+      {{!-- <script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script> --}}
+
+        <link rel="stylesheet" href="/css/couponstyle.css">
+
+   
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Check Out</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/home">Home</a>
+                            <a href="/shop">Shop</a>
+                            <span>Check Out</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+                <div class="d-flex justify-content-end mb-2">
+                    <a type="button" style="font-size: 15px; color: #047e08;"  class="mb-2" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-tags fa-2xl me-2" style="color: #047e08;"></i>COUPONS</a>
+                </div>
+     <div>
+
+
+            <div class="cart__discount d-flex  ">
+
+                     <div class="d-flex mt-2  me-auto ">
+
+        <div class=" me-2">
+          {{!-- <button >
+            <a
+              style="color: black;"
+              href="/addnewaddress"
+            >Add New Address</a></button> --}}
+              <h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a new Address? <a style="color: #047e08;" data-toggle="modal" data-target="#animalModal" href="/selectaddress">Click
+                            here</a>
+        </div>
+
+        {{!-- <div class="">
+          <button style="border-color: black; background-color: white; border: radius 20px; " >
+            <a
+            style="color: black;"
+              href="/selectaddress"
+            >Select Address</a></button>
+        </div> --}}
+    </div>
+               <div class=" d-flex ">
+                 <div class="me-2 mt-3">
+                        <h6 >Coupon codes</h6>
+                </div>
+
+                <div  style="width: 200px;">
+                    <input style="width: 200px; height: 50px;" id="couponCode" name="couponCode" type="text" placeholder="Coupon code">
+                </div>
+
+                <div>
+                    <button onclick="applyCoupon('{{totalCartValue}}')" class="site-btn">Apply</button>
+                    <p id="couponstatus" style="margin-right: 100px;" class="text-danger me-5"></p>
+                </div>
+               </div>
+    
+           </div>
+     </div>
+
+
+
+
+            <div class="checkout__form">
+
+                <form action="" id="checkoutform">
+                    <div class="row">
+
+                        
+     <div class="col-lg-8 col-md-6">
+                                {{#with selectedAddress}}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p> Name<span>*</span></p>
+                                        <input type="text"name="name" value="{{name}}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="number"name="phone" value="{{phone}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" name="email" value="{{email}}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="checkout__input">
+                                <p>House Name<span>*</span></p>
+                                <input type="text" name="house" value="{{house}}" placeholder="House Name" class="checkout__input__add" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Town/City<span>*</span></p>
+                                <input type="text" value="{{city}}" name="city" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>State<span>*</span></p>
+                                <input type="text"name="state" value="{{state}}" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Pin code<span>*</span></p>
+                                <input type="number"name="pincode" value="{{pincode}}" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Landmark<span>*</span></p>
+                                <input type="text" name="landmark" value="{{landmark}}" required>
+                            </div>
+                            {{/with}}
+                        </div> 
+
+                          
+                        <div class="col-lg-4 col-md-6">
+
+
+                           
+                            <div class="checkout__order">
+                         
+                                   
+                                <h4 class="order__title">Your order</h4>
+                                <div class="checkout__order__products">Product <span>Total</span></div>
+                               {{#each requiredCartData}}
+                                <ul class="checkout__total__products">
+                                    <li>{{this.name}} <span>Rs {{this.totalPrice}}</span></li>
+                                </ul>
+                                {{/each}} 
+                                <ul class="checkout__total__all">
+                                    <li>Subtotal <span>{{totalCartValue}}</span></li>
+                                    <li>Discount Amount <span id="discountAmount" class="text-success">{{discountAmount}}</span> </li>
+                                    <li>Total <span id="totalAmount">{{discountedTotal}}</span></li>
+                                    
+                                </ul>
+                                {{!-- <div class="checkout__input__checkbox">
+                                    <label for="acc-or">
+                                        Create an account?
+                                        <input type="checkbox" id="acc-or">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div> --}}
+                                {{!-- <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua.</p> --}}
+                                <div class="form-check">
+                                              <input class="form-check-input" type="radio" value="COD" name="paymentmethod" id="paymentmethod1">
+                                    <label class="form-check-label" for="paymentmethod1">
+                                        COD
+                                          </label>
+                                </div>
+                                     <div class="form-check mt-2 mb-2">
+                                         <input class="form-check-input" type="radio" value="online" name="paymentmethod" id="paymentmethod2" checked>
+                                         <label class="form-check-label" for="paymentmethod2">
+                                             Online Payment  </label>
+                                    </div>
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                          
+                            </div>
+                           
+                          
+                        </div>
+                         
+                         
+                    </div>
+                </form>
+                   
+            </div>
+
+         
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+
+    <!-- Coupon modal  -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+          <div class="modal-body bg-4">
+
+            
+            <div class="d-flex main-content">
+              <div class="bg-image promo-img mr-3" style="background-image: url('/img/coupon/printable-coupons-1.jpg');">
+              </div>
+              {{#each couponCode}}
+              <div>
+                <div class="text-center mb-2">
+                  <h3 class="mb-4">{{couponName}}</h3>
+                  <p>You will get <span style="color: #00ad06; font-weight: 500;"> ₹{{discountAmount}} </span> for min purchase of <span style="color: red; font-weight: 500;">₹{{minAmount}}</span>.</p>
+                </div>
+                <div class="coupon font-weight-bold mb-2">
+                  {{couponCode}}
+                </div>
+                <p>
+                  <p class="mb-2"> will expire on <span>{{sliceDate expiryDate}}</span></p>
+                </p>
+                <p class="text-center mb-5">
+                <a href="#" class="cancel" data-dismiss="modal">Sorry, I don't want this.</a>
+                </p>
+              </div>
+              {{/each}}
+            </div>
+
+
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Coupon modal end -->
+
+    <!-- address modal  -->
+
+{{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#animalModal">Open Modal</button> --}}
+
+<div class="modal fade" id="animalModal" tabindex="-1" role="dialog" aria-labelledby="animalModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="container">
+        <div class="row mt-2">
+
+
+          <div class="col-12">
+<h6 class="coupon__code" ><span class="icon_tag_alt"></span> Have a new Address? <a style="color: blue; font-weight:500;" href="/addnewaddress">Click
+                            here to add</a> <span class="text-danger ms-5"></span> </h6>
+            </div>
+             <form novalidate id="animalForm" action="/selectone" method="post">
+
+            <div class="form-group row">
+
+                  {{#each addressData}}
+                     {{#address}}
+             
+                      <div class="col-md-6 ">
+                   <div id="elephant-card" class="card mb-4">
+                    <div class="card-body" role="button">
+                     
+                         <h5 class="card-title"><input id="elephant" name="address" checked type="radio" value="{{@index}}"> </h5>
+                         
+                        <h5 > <span class="me-2 mb-3" style="color: rgb(17, 4, 77); font-weight:500;">Name:</span> {{name}}<br>
+                              <span class="me-2 mb-3" style="color: rgb(17, 4, 77); font-weight:500;">Phone:</span> {{phone}} <br>
+                              <span class="me-2 mb-3" style="color: rgb(17, 4, 77); font-weight:500;">email:</span> {{email}} <br>
+                              <span class="me-2 mb-3" style="color: rgb(17, 4, 77); font-weight:500;">house:</span> {{house}} <br>
+                              <span class="me-2 mb-3" style="color: rgb(17, 4, 77); font-weight:500;">city:</span> {{city}} <br>
+                              <span class="me-2 mb-3" style="color: rgb(17, 4, 77); font-weight:500;">state:</span> {{state}} <br>
+                              <span class="me-2 mb-3" style="color: rgb(17, 4, 77); font-weight:500;">pincode:</span> {{pincode}} <br>
+                              <span class="me-2 mb-3" style="color: rgb(17, 4, 77); font-weight:500;">landmark:</span> {{landmark}} <br>
+                        </h5>
+                 
+                    </div>
+                  </div>
+                  
+                   
+              </div>
+              {{/address}}
+
+                 {{/each}}
+         
+            </div>
+            
+       
+          <div class="w-100 d-flex flex-row justify-content-center">
+            <button id="submitButton" type="" class="btn btn-primary me-3">SELECT</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+
+
+          </div>
+        
+
+        </form>
+            <!--close button to the modal -->
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- address modal end -->
+
+
+
+    <!-- payment script -->
+
+    <script>
+        $("#checkoutform").submit((e)=>{
+    e.preventDefault()
+    const paymentMethod = document.querySelector('input[name="paymentmethod"]:checked').value;
+    if (paymentMethod === 'COD') {
+      
+         $.ajax({
+        url:"/placeorder",
+        method:"post",
+        data:$("#checkoutform").serialize(),
+        success:(response)=>{
+         
+            location.replace('/renderconfirmation')
+        }
+    })
+    } else {
+    
+   
+   $.ajax({
+    url:"/initiaterazorpay",
+    method:"post",
+    data:$('#checkoutform').serialize(),
+    success:(res)=>{
+
+
+ //---------------------------------------------------------------------------------
+
+          amount = res.razorData.amount
+          console.log(amount);
+          var options = {
+            "key": "rzp_test_drvVy05m61MDRI", // Enter the Key ID generated from the Dashboard
+            "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "BellaCasa",
+            "description": "India's best Mens Fashion website",
+            "image": "/public/img/logo.png",
+            "order_id": res.razorData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+              verifyPayment(response, res.razorData);
+            },
+            "prefill": {
+              "name": "Gaurav Kumar",
+              "email": "gaurav.kumar@example.com",
+              "contact": "9999999999"
+            },
+            "notes": {
+              "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+              "color": "#3399cc"
+            }
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
+          e.preventDefault();
+          rzp1.on('payment.failed', function (response) {
+      
+
+          });
+   
+
+
+    }
+   })
+
+    }
+   
+})
+
+function verifyPayment(razorResponse,razorData){
+    $.ajax({
+        url:"/verifyRazorpay",
+        data:{
+            razorResponse,
+            razorData
+        },
+        method:'post',
+        success:(response)=>{
+            location.replace("/renderconfirmation")
+        }
+    })
+}
+
+   //---------coupon script------------
+
+function applyCoupon(totalCartValue){
+    couponCode=document.getElementById("couponCode").value
+    console.log(couponCode)
+$.ajax({
+
+    url:"/applycoupon",
+    data:{
+       totalCartValue: totalCartValue,
+        couponCode:couponCode
+    },
+    method:"post",
+    success:(response)=>{
+        console.log(response)
+        $("#totalAmount").text(response.discountedTotal)
+        $("#discountAmount").text(response.discountAmount)
+        $("#couponstatus").text(response.message)
+
+
+    }
+
+})
+}
+
+    </script>
+
+
+ 

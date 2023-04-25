@@ -1,0 +1,112 @@
+<div class="container">
+    
+          
+        {{!-- <div class="col-md-12 form-group"> --}}
+           
+   {{!-- <a href="/addnewaddress" class="btn-dark mt-2 mb-2 btn-rounded " style="width: 75px;" >Add</a> --}}
+     <h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a new Address? <a href="/addnewaddress">Click
+                            here to add</a> </h6>
+
+        {{!-- </div> --}}
+   
+    <div class="row mb-4" >
+        
+       
+        {{#each addressData}}
+        {{#address}}
+        
+      <div class="col-lg-5">
+         
+        <div class="card mb-4"style="width: 33rem;">
+          <div class="card-body">
+              
+        
+            <div class="row">
+             
+              <div class="col-sm-3">
+                <p class="mb-0">Name:</p>
+              </div>
+              <div class="col-sm-9">
+              <input type="text" name="name" value="{{name}}" readonly>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                  
+                <p class="mb-0">Phone number</p>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" name="phone" value="{{phone}}" readonly>
+               
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email address</p>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" name="email" value="{{email}}" readonly>
+
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">House Name
+                </p>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" name="house" value="{{house}}" readonly>
+                
+              </div>
+            </div>
+            <hr>
+              <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Town/City</p>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" name="address" value="{{city}}" readonly>
+              </div>
+            </div>
+            <hr>  <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">State</p>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" name="town" value="{{state}}" readonly>
+             
+              </div>
+            </div>
+            <hr>  <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Pin code</p>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" name="pincode" value="{{pincode}}" readonly>
+              </div>
+            </div>
+            <hr>  <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Landmark</p>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" name="pincode" value="{{landmark}}" readonly>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+       <button  type="" class="btn"  style="color: white;background: #B08EAD;"><a href="/selectone/{{@index}}">SELECT</a> </button>
+      
+      </div>
+      
+        {{/address}}
+
+ {{/each}}
+    </div>  
+    </div>
+
+

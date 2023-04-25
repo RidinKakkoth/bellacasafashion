@@ -1,0 +1,71 @@
+        <script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     
+      <main id="main" class="main">
+<div class="d-flex justify-content-end"> 
+<a href="/addcoupon" class="mb-4 "> <button class="btn btn-success rounded-pill">Add Coupon</button></a>
+
+</div>
+   
+            <table class="table" id="producttable">
+  <thead>
+    <tr>
+                        <th scope="col">Coupon Name</th>
+                        <th scope="col">Coupon Code</th>
+                        <th scope="col">Discount Amount</th>
+                        <th scope="col">Min Amount</th>
+                        <th scope="col">Expiry Date</th>
+                        <th scope="col">Coupon Limit</th>
+                        {{!-- <th scope="col">Coupon Edit</th> --}}
+                        <th scope="col">Coupon Delete</th>
+    </tr>
+  </thead>
+  <tbody >
+     {{#each couponData}}
+                      <tr >
+                        <td scope="row">{{couponName}}</td>
+                        <td class="fw-bold text-success">{{couponCode}}</td>
+                        <td >{{discountAmount}}</td>
+                        <td>{{minAmount}}</td>
+                        <td>{{expiryDate}}</td>
+                        <td>{{couponLimit}}</td>
+                        {{!-- <td><a href="/editcoupon/{{_id}}"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #135090;"></i></a></td> --}}
+                        {{!-- <td><a href="/deletecoupon/{{_id}}"><i class="fa-solid fa-trash fa-lg"  onclick="return  confirm('are you want to delete coupon {{couponName}}?')" style="color: #ff0000;"></i></a></td> --}}
+                        <td><a style="cursor: pointer;" onclick="deleteCoupon('{{_id}}')"><i class="fa-solid fa-trash fa-lg"  onclick="return  confirm('are you want to delete coupon {{couponName}}?')" style="color: #ff0000;"></i></a></td>
+                        </tr>
+               {{/each}}
+
+  </tbody>
+</table>
+
+      </main> 
+
+
+
+                <script>
+$(document).ready(function () {
+    $('#producttable').DataTable();
+});
+
+
+
+function deleteCoupon(id) {
+  console.log(id)
+        
+  axios.delete(`/deletecoupon/${id}`)
+    .then(response => {      
+    
+        swal({
+          text: "Deleted",
+          icon: "error",
+        }).then(()=>{
+            location.replace("/couponmanagement")
+        })
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+</script>

@@ -1,0 +1,253 @@
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__text">
+          <h4>Order Confirmation</h4>
+          <div class="breadcrumb__links">
+            <a href="/home">Home</a>
+            <a href="/shop">Shop</a>
+            <span>Order Confirmation
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<div class="container">
+  <div class="container mt-5 mb-5">
+
+<div class="d-flex justify-content-end ">
+
+               <a class="text-primary fw-bold ms-5" onclick="downloadPDF()" href=""><span class="me-2"> Download Invoice</span><i class="fa fa-file-arrow-down fa-lg ms-auto" style="color: #1f512b;"></i></a> 
+</div>
+    <div class="row d-flex justify-content-center">
+
+      <div class="col-md-8">
+
+        <div class="card">
+
+          <div class="text-left logo p-2 px-5">
+
+            <img src="/img/logo.png" width="80" />
+
+          </div>
+        
+
+          <div class="invoice p-5">
+
+            <h5>Your order Confirmed!</h5>
+
+            <span class="font-weight-bold d-block mt-4 text-uppercase">Hello, {{userName}}</span>
+            <span>You order has been confirmed and will be shipped in next two
+              days!</span>
+
+            <div
+              class="payment border-top mt-3 mb-3 border-bottom table-responsive"
+            >
+
+              <table id="orderconfirmation" class="table table-borderless">
+
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="py-2">
+
+                        <span class="d-block text-muted">Order Date</span>
+                        <span>{{orderDate}}</span>
+
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="py-2">
+
+                        <span class="d-block text-muted">Order No</span>
+                        <span>{{confirmationData._id}}</span>
+
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="py-2">
+
+                        <span class="d-block text-muted">Payment</span>
+                        <span>{{confirmationData.paymentType}}</span>
+
+                      </div>
+                    </td>
+
+                    <td>
+                      <div  class="py-2">
+
+                        <span class="d-block text-muted">Shiping Address</span>
+                        <span>{{confirmationData.address.[0].house}},{{ confirmationData.address.[0].city}},<br>{{
+                          confirmationData.address.[0].pincode}},<br>{{
+                          confirmationData.address.[0].state}}</span>
+
+                      </div>
+                    </td>
+                  </tr>
+                {{!-- </tbody> --}}
+
+              {{!-- </table> --}}
+
+            </div>
+
+            {{!-- <div class="product border-bottom table-responsive"> --}}
+{{!-- 
+              <table class="table table-borderless">
+
+                <tbody> --}}
+                  {{#each orderData}}
+                  <tr>
+                    <td width="20%">
+
+                      <img src="/uploads/{{image.[0]}}" width="75" />
+
+                    </td>
+
+                    <td width="60%">
+                      <span class="font-weight-bold">{{name}}</span>
+                      <div class="product-qty">
+                        <span class="d-block">Quantity:{{quantity}}</span>
+                        {{!-- <span>Color:Dark</span> --}}
+
+                      </div>
+                    </td>
+                    <td width="20%">
+                      <div class="text-right">
+                        <span class="font-weight-bold">Rs.{{totalPrice}}</span>
+                      </div>
+                    </td>
+                  </tr>
+               {{/each}}
+                {{!-- </tbody> --}}
+
+              {{!-- </table> --}}
+
+            </div>
+
+            <div class="row d-flex justify-content-end">
+
+              <div class="col-md-5">
+
+                {{!-- <table class="table table-borderless"> --}}
+
+                  {{!-- <tbody class="totals"> --}}
+
+                    <tr>
+                      <td>
+                        <div class="text-left">
+
+                          <span class="text-muted">Total Amount</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span>{{confirmationData.totalAmount}}</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="text-left">
+
+                          <span class="text-muted">Shipping Fee</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span>Free</span>
+                        </div>
+                      </td>
+                    </tr>
+{{!-- 
+                    <tr>
+                      <td>
+                        <div class="text-left">
+
+                          <span class="text-muted">Tax Fee</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span>0</span>
+                        </div>
+                      </td>
+                    </tr> --}}
+
+                    <tr>
+                      <td>
+                        <div class="text-left">
+
+                          <span class="text-muted">Discount</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span class="text-success">{{discountAmount}}</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr class="border-top border-bottom">
+                      <td>
+                        <div class="text-left">
+
+                          <span class="font-weight-bold">Subtotal</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span class="font-weight-bold">Rs.{{discountedTotal}}</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            </div>
+
+            <p>We will be sending shipping confirmation email when the item
+              shipped successfully!</p>
+            <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
+            <span>Team Bella Casa</span>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>    
+    function downloadPDF() {
+    var table = document.getElementById("orderconfirmation");
+    var newWin = window.open('', 'Print-Window');
+    newWin.document.open();
+    newWin.document.write('<html><body onload="window.print()">' + table.outerHTML + '</html>');
+    newWin.document.close();
+    setTimeout(function () { newWin.close(); }, 10);
+    }
+
+</script>

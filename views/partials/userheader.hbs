@@ -1,0 +1,107 @@
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="#">Sign in</a>
+            </div>
+
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="/loadwishlist"><i class="fa-solid fa-heart fa-lg" style="color: #a80505;"></i></a>
+            <a href="/loadCart"><img src="/img/icon/cart.png" alt=""> <span>0</span></a>
+            <div class="price">$0.00</div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping,all over INDIA.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>Free shipping,all over INDIA..</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                              {{#if userName}}
+                              <a href="/userprofile">
+
+                              <i class="fa-solid fa-circle fa-sm" style="color: #00ff00;"></i>
+                              {{userName}}
+                              </a>
+                              <a href="/signout">Sign Out</a>
+                    
+                              {{else}}   
+                               <a href="/signin"> Sign In  </a>
+                              {{/if}}
+                      </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href=""><img src="/img/logo.png" style="height: 75px;" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="/shop">Shop</a></li>
+                            <li><a href="/userprofile">Profile</a></li>
+                            <li><a href="/contactus">Contact Us</a></li>
+
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="/shop">Shop</a></li>
+                                    <li><a href="/loadcart">Shopping Cart</a></li>
+                                    <li><a href="/loadcheckout">Check Out</a></li>
+                                </ul>
+                            </li>
+    
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="/loadwishlist"><i class="fa-solid fa-heart fa-lg" style="color: #a80505;"></i></a>
+                        {{!-- <a href="/loadCart"><img src="/img/icon/cart.png" alt=""> <span style="color: #a80505; font-weight: bold;">{{cartNumber}}</span></a> --}}
+                       {{!-- <i class="fa-solid fa-cart-shopping"> <a  href="/loadCart"> <span style="font-size: .7rem;  position: absolute;     top: -24px;
+    left: 0px;
+ color: #ff00aa;
+  ">{{cartNumber}}  </span></a></i> --}}
+                        <a href="/loadCart"><i  class="fa-solid fa-cart-shopping" style="color: #030236;"><span class="fw-bold" style="font-size: .7rem; font-weight: bolder;  position: absolute;    top: -5px;
+    left: 19px;
+ color: #ff0000;
+  ">{{cartNumber}}  </span></i></a>
+
+       
+                           {{!-- <div class="price">$0.00</div> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+

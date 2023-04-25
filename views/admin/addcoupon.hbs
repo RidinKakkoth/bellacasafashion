@@ -1,0 +1,64 @@
+
+   <main id="main" class="main">
+
+   
+    <section class=""> <!--vh-100-->
+       
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card shadow-2-strong" style="border-radius: 1rem;">
+
+                  
+                <div class="card-body p-5 ">
+                    
+                    <form  action="/addcoupon" method="post" >
+      
+                  <h3 class="mb-3 text-success">Add Coupon</h3>
+      
+                  
+                  
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form2Example17">Coupon Name</label>
+                    <input type="text" name="couponName" id="form2Example17" style="width:275px;" class="form-control form-control-lg" />
+                  </div>
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form2Example17">Coupon Code</label>
+                    <input type="text" name="couponCode" id="form2Example17" style="width:275px;" class="form-control form-control-lg" />
+                  </div>
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form2Example17">Discount Amount</label>
+                    <input type="number" name="discountAmount" id="form2Example17" style="width:275px;" class="form-control form-control-lg" />
+                  </div>
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form2Example17">Min Amount</label>
+                    <input type="number" name="minAmount" id="form2Example17" style="width:275px;" class="form-control form-control-lg" />
+                  </div>
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form2Example17">Expiry Date</label>
+                    <input type="date" name="expiryDate" id="form2Example17" style="width:275px;" class="form-control form-control-lg" />
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form2Example17">Coupon Limit</label>
+                    <input type="number" name="couponLimit" id="form2Example17" style="width:275px;" class="form-control form-control-lg" />
+                  </div>
+
+                  <div class="pt-1 ">
+                    <div>
+
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Add Coupon</button>
+                    </div>
+                <div>
+                  <p class="text-danger" >{{message}}</p>
+                  
+                </div>    
+                  </div>
+
+      </form>
+                </div>
+      
+                </div>
+              </div>
+          </div>
+        </div>
+      </section>
+      </main>

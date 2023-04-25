@@ -1,0 +1,177 @@
+<script src="https://unpkg.com/js-image-zoom@0.4.1/js-image-zoom.js" type="application/javascript"></script>
+
+
+
+
+   <script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Shop Details Section Begin -->
+    <section class="shop-details">
+        <div class="product__details__pic">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__details__breadcrumb">
+                            <a href="/home">Home</a>
+                            <a href="/shop">Shop</a>
+                            <span>Product Details</span>
+                        </div>
+                    </div>
+                </div>
+                {{#each productsData}}
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="/uploads/{{image.[0]}}">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="/uploads/{{image.[1]}}">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="/uploads/{{image.[2]}}">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="/uploads/{{image.[3]}}">
+                                        
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div  class="col-lg-6 col-md-9">
+                        <div   class="tab-content">
+                            <div  class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div id="img-container"  class="product__details__pic__item">
+                                    <img  src="/uploads/{{image.[0]}}" alt="">
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div id="img-container1"  class="product__details__pic__item">
+                                    <img src="/uploads/{{image.[1]}}" alt="">
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <div id="img-container2"  class="product__details__pic__item">
+                                    <img src="/uploads/{{image.[2]}}" alt="">
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-4" role="tabpanel">
+                                <div id="img-container3"  class="product__details__pic__item">
+                                    <img src="/uploads/{{image.[3]}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product__details__content">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="product__details__text">
+                            <h4>{{name}}</h4>
+                          
+                            <h3>₹{{price}} <span>70.00</span></h3>
+                            <p>{{description}}.</p>
+                          
+                            <div class="product__details__cart__option">
+                                
+                                <a href="" onclick="addToCart('{{this._id}}')" class="primary-btn">add to cart</a>
+                            </div>
+                            <div class="product__details__btns__option">
+                                <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
+                            </div>
+                            <div class="product__details__last__option">
+                                <h5><span>Guaranteed Safe Checkout</span></h5>
+                                <img src="img/shop-details/details-payment.png" alt="">
+                                <ul>
+                                    <li><span>SKU:</span> {{_id}}</li>
+                                    <li><span>Categories:</span> {{category.name}}</li>
+                                    {{!-- <li><span>Tag:</span> Clothes, Skin, Body</li> --}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        {{/each}}
+    </section>
+    <!-- Shop Details Section End -->
+
+    
+<script>
+   
+ function addToCart(productId) {
+        event.preventDefault()
+        
+
+        axios.post('/cart', {
+
+            product: productId,
+
+        })
+            .then(function (response) {
+                console.log(response);
+                                swal("Product added to cart!", "Product added to cart!", "success");
+
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert('hierror')
+
+
+            });
+
+    }
+
+    
+  function addToWishlist(event, productId){
+    console.log(productId);
+    event.preventDefault();
+
+    axios.post("/wishlist",{
+        product:productId
+    }).then((response)=>{
+        
+        console.log(response)
+        
+    }).catch((error)=>{
+        console.log(error)
+    })
+}
+
+</script>
+<script>
+            var options = {
+    width: 450,
+    zoomWidth: 300,
+    zoomHeight: 200,
+    offset: { vertical: 0, horizontal: 200 },
+    zoomPosition: "left"
+};
+new ImageZoom(document.getElementById("img-container"), options);
+new ImageZoom(document.getElementById("img-container1"), options);
+new ImageZoom(document.getElementById("img-container2"), options);
+new ImageZoom(document.getElementById("img-container3"), options);
+
+
+        </script>
+

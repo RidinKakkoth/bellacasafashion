@@ -1,0 +1,59 @@
+      <main id="main" class="main">
+<div class="d-flex justify-content-end"> 
+<a href="/addproduct" class="mb-4 "> <button class="btn btn-success rounded-pill">Add New product</button></a>
+
+</div>
+   
+            <table class="table" id="producttable">
+  <thead>
+    <tr>
+                        <th scope="col">Preview</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody >
+     {{#each productData}}
+                      <tr >
+                        <td  scope="row"><a href="#"><img  src="/uploads/{{image.[0]}}" style="width: 62px;" alt=""></a></td>
+                        <td ><a href="#" class="text-primary fw-bold ">{{name}}</a></td>
+                        <td>{{category.name}}</td>
+                        <td class="fw-bold">₹ {{price}}</td>
+                        <td>{{stock}}</td>
+                        <td><a href="/editproduct/{{_id}}"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #135090;"></i></a></td>
+                        <td>
+               {{#if isListed}}
+                         <a
+                         class="btn btn-success btn-sm" id="block"
+                         href="/unlistproduct/{{_id}}"
+                         onclick="return  confirm('are you want to unlist product {{name}}?')"
+                         >Listed</a>
+               {{else}}  <a
+                          class="btn btn-danger btn-sm" id="block"
+                          href="/listproduct/{{_id}}"
+                          onclick="return  confirm('are you want to list product {{name}}?')"
+                         >Unlisted</a>
+                       
+               {{/if}}
+                         </td>
+                        {{!-- <td><a href="/deleteproduct/{{_id}}"><i class="fa-solid fa-trash fa-lg"  onclick="return  confirm('are you want to block product {{name}}?')" style="color: #ff0000;"></i></a></td> --}}
+                        </tr>
+               {{/each}}
+
+  </tbody>
+</table>
+
+      </main> 
+
+
+
+                <script>
+$(document).ready(function () {
+    $('#producttable').DataTable();
+});
+
+</script>

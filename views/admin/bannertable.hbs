@@ -1,0 +1,83 @@
+       <script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      <main id="main" class="main">
+<div class="d-flex justify-content-end"> 
+<a href="/addbanner" class="mb-4 "> <button class="btn btn-success rounded-pill">Add New Banner</button></a>
+
+</div>
+   
+            <table class="table" id="bannertable">
+  <thead>
+    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Heading</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Banner Size</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Edit</th>
+                        {{!-- <th scope="col">Delete</th> --}}
+    </tr>
+  </thead>
+  <tbody >
+     {{#each bannerData}}
+                      <tr >
+                        <td scope="row"><a href="#"><img src="/uploads/{{image}}" style="width: 100px;" alt=""></a></td>
+                        <td ><a href="#" class="text-primary fw-bold ">{{heading}}</a></td>
+                        <td>{{description}}</td>
+                        <td>{{bannerType}}</td>
+             <td>     
+                  {{#if isFeatured}}
+                         <a
+                         class="btn btn-success btn-sm me-3" id="block"
+                         href="/unfeaturebanner/{{_id}}"
+                         onclick="return  confirm('are you want to unfeature banner {{heading}}?')"
+                         >Featured</a>
+                  {{else}}  <a
+                          class="btn btn-danger btn-sm me-3" id="block"
+                          href="/featurebanner/{{_id}}"
+                          onclick="return  confirm('are you want to feature banner {{heading}}?')"
+                         >UnFeatured</a>
+                       
+                  {{/if}}
+             </td>
+                        <td><a href="/editbanner/{{_id}}"><i class="fa-solid fa-pen-to-square fa-lg ms-2" style="color: #135090;"></i></a></td>
+                        {{!-- <td><a href="/deletebanner/{{_id}}"><i class="fa-solid fa-trash fa-lg"  onclick="return  confirm('are you want to delete {{heading}}?')" style="color: #ff0000;"></i></a></td> --}}
+                        {{!-- <td><a onclick="deleteBanner('{{_id}}')"><i class="fa-solid fa-trash fa-lg ms-3"  onclick="return  confirm('are you want to delete {{heading}}?')" style="color: #ff0000;"></i></a></td> --}}
+                        </tr>
+               {{/each}}
+
+  </tbody>
+</table>
+
+      </main> 
+
+
+
+<script>
+
+$(document).ready(function () {
+    $('#bannertable').DataTable();
+});
+
+
+function deleteBanner(id) {
+        
+  axios.delete(`/deletebanner/${id}`)
+    .then(response => {      
+    
+        swal({
+          text: "Deleted",
+          icon: "error",
+        }).then(()=>{
+            location.replace("/bannertable")
+        })
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+
+</script>

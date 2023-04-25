@@ -1,0 +1,64 @@
+
+   <main id="main" class="main">
+
+   
+    <section class=""> <!--vh-100-->
+       
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card shadow-2-strong" style="border-radius: 1rem;">
+
+                  
+                <div class="card-body p-5 ">
+                    
+                    <form  action="/addbanner" method="post" enctype="multipart/form-data">
+      
+                  <h3 class="mb-5">Add Banner</h3>
+      
+                  
+                  
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form2Example17">Heading</label>
+                    <input type="text" name="heading" id="form2Example17" style="width:275px;" class="form-control form-control-lg" />
+                  </div>
+
+                  <div class="d-flex">
+
+                <div class="form-check mt-2 mb-2">
+                   <input class="form-check-input" type="radio" value="big" name="bannersize" id="bannersize1">
+                   <label class="form-check-label" for="bannersize1">
+                      BIG Banner
+                   </label>
+                   </div>
+                <div class="form-check mt-2 mb-2 ms-3">
+                      <input class="form-check-input" type="radio" value="small" name="bannersize" id="bannersize2" checked>
+                      <label class="form-check-label" for="bannersize2">
+                       SMALL Banner
+                       </label>
+                </div>
+                
+                </div>
+
+
+                  <div class="form-outline mb-1 mt-2">
+                    <label class="form-label" for="form2Example17">Description</label>
+                    <textarea class="form-control" style="width: 275px;" name="description" aria-label="With textarea"></textarea>
+                  </div>
+                 
+                    <div class="form-group mt-4 mb-3">
+                      <label for="exampleFormControlFile1">Banner Images</label>
+                      <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                  <div class="pt-1 ">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Add Banner</button>
+                  </div>
+
+      </form>
+                </div>
+      
+                </div>
+              </div>
+          </div>
+        </div>
+      </section>
+      </main>

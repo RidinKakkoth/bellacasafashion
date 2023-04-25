@@ -1,0 +1,210 @@
+<main id="main" class="main">
+
+<div class="">
+ <div class="container mt-5 mb-5">
+
+    <div class="row d-flex justify-content-center">
+
+      <div class="col-md-8">
+
+        <div class="card">
+
+          <div class="text-left logo  px-5">
+
+          </div>
+
+          <div class="invoice">
+
+            <div class="payment table-responsive">
+              {{!-- <button class="btn btn-danger rounded-pill me-3 " onclick="cancelOrder('{{orderHistoryData._id}}','{{orderHistoryData.orderStatus}}')" ><a id="status" style="text-decoration: none; color: white;"  >cancel order</a> </button> --}}
+              {{!-- <div class="d-flex justify-content-end">
+
+                {{#isEqual orderHistoryData.orderStatus "ordered"}}
+                  <button id="status" class="badge bg-warning">
+                    <a
+                      class="text-white"
+                      style="text-decoration: none;"
+                      onclick="  return  confirm('are you want to cancel order?'),
+ cancelOrder('{{orderHistoryData._id}}','{{orderHistoryData.orderStatus}}')"
+                    >Cancel Order</a>
+
+                  </button>
+                {{else}}
+                  <button id="status" class="badge bg-danger">
+                    <a
+                      class="text-white"
+                      style="text-decoration: none;"
+                    >Cancelled</a>
+
+                  </button>
+                {{/isEqual}}
+              </div> --}}
+
+
+
+            </div>
+
+            <div class="product border-bottom table-responsive">
+
+              <table class="table table-borderless">
+
+                <tbody>
+                  {{#each orderData}}
+                    <tr>
+                      <td width="20%">
+
+                        <img src="/uploads/{{image.[0]}}" width="75" />
+
+                      </td>
+
+                      <td width="60%">
+                        <span class="font-weight-bold">{{name}}</span>
+                        <div class="product-qty">
+                          <span class="d-block">Quantity:{{quantity}}</span>
+                          {{! <span>Color:Dark</span> }}
+
+                        </div>
+                      </td>
+                      <td width="20%">
+                        <div class="text-right">
+                          <span
+                            class="font-weight-bold"
+                          >₹{{totalPrice}}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+
+              </table>
+
+            </div>
+
+            <div class="d-flex justify-content-between">
+                 <div>
+                  <span
+                          class="d-block font-weight-bold mt-2 ms-3 text-primary"
+                        >Invoice</span>
+               
+                                       <table class="table table-borderless">
+
+                  <tbody class="totals">
+
+                    <tr>
+                      <td>
+                        <div class="text-left">
+
+                          <span class="text-muted">Subtotal</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span>{{orderHistoryData.totalAmount}}</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="text-left">
+
+                          <span class="text-muted">Shipping Fee</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span>Free</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="text-left">
+
+                          <span class="text-muted">Tax Fee</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span>0</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="text-left">
+
+                          <span class="text-muted">Discount</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span class="text-success">{{orderHistoryData.discount}}</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr class="border-top border-bottom">
+                      <td>
+                        <div class="text-left">
+
+                          <span class="font-weight-bold">Subtotal</span>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-right">
+                          <span
+                            class="font-weight-bold"
+                          >Rs.{{orderHistoryData.discountedTotal}}</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+
+                 </div>
+
+                 <div>
+
+ <div class="">
+
+                        <span
+                          class="d-block font-weight-bold mt-2 mb-2 me-5 text-primary"
+                        >Shiping Address</span>
+                        <span class="mt-3">
+                          {{orderHistoryData.address.0.name}},<br />
+                          {{orderHistoryData.address.0.phone}},<br />
+                          {{orderHistoryData.address.0.house}},<br />
+                          {{orderHistoryData.address.0.city}},<br />
+                          {{orderHistoryData.address.0.state}},<br />
+                          {{orderHistoryData.address.0.pincode}},<br />
+                          {{orderHistoryData.address.0.landmark}}
+
+                        </span>
+
+                      </div>
+
+                 </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</main>

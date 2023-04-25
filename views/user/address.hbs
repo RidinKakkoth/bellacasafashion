@@ -1,0 +1,68 @@
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="mb-4">
+<h5 class="fw-bold" >Add New Address</h5>
+            </div>
+           <div class="checkout__form">
+
+        <div class="row">
+
+            <div class="col-lg-8 col-md-6">
+    <form  id="addressform" action="/addnewaddress" method="post">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p> Name<span>*</span></p>
+                            <input type="text" name="name" required minlength="3" placeholder="Full Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p>Phone<span>*</span></p>
+                            <input type="number" name="phone" required minlength="10" placeholder="Phone Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p>Email<span>*</span></p>
+                            <input type="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email Address">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout__input">
+                    <p>House Name<span>*</span></p>
+                    <input type="text" name="house" placeholder="House Name" class="checkout__input__add" required>
+                </div>
+                <div class="checkout__input">
+                    <p>Town/City<span>*</span></p>
+                    <input type="text" name="city" required placeholder="Town/City">
+                </div>
+                <div class="checkout__input">
+                    <p>State<span>*</span></p>
+                    <input type="text" name="state" required placeholder="State">
+                </div>
+                <div class="checkout__input">
+                    <p>Pin code<span>*</span></p>
+                    <input type="number" name="pincode" required minlength="6" placeholder="Pin code">
+                </div>
+                <div class="checkout__input">
+                    <p>Landmark<span>*</span></p>
+                    <input type="text" name="landmark" required placeholder="Landmark">
+                </div>
+        <button type="submit">Add Address</button>
+    </form>
+            </div>
+
+        </div>
+
+</div>
+
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+

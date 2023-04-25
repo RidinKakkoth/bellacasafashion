@@ -1,0 +1,71 @@
+  <main id="main" class="main"><!-- its the body width deciding factor -->
+
+      
+
+ <section>
+  <div class="container mt-5">
+
+    <div class="d-flex align-items-center">
+      <a href="/adduserdata" class="btn btn-success ms-auto">
+        Add User Data
+      </a>
+    </div>
+
+    <table id="mytable" class="table table-white table-striped mt-3">
+      <thead>
+        <tr>
+          {{!-- <th scope="col">user id</th> --}}
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Block</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each userdata}}
+          <tr>
+            {{!-- <td>{{id}}</td> --}}
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+            <td>
+              <a class="btn btn-primary btn-sm" href="/edituser/{{_id}} "><i
+                  class="fa-solid fa-user-pen"
+                ></i></a>
+              </td>
+              <td>
+                {{#if isBlocked}}
+              <a
+                class="btn btn-danger btn-sm" id="block"
+                href="/unblockuser/{{_id}}"
+                onclick="return  confirm('are you want to unblock user {{name}}?')"
+              >Blocked</a>
+               {{else}}
+                       <a
+                class="btn btn-success btn-sm" id="block"
+                href="/blockuser/{{_id}}"
+                onclick="return  confirm('are you want to block user {{name}}?')"
+              >Active</a>
+              {{/if}}
+
+            </td>
+
+          </tr>
+
+        {{/each}}
+
+      </tbody>
+
+    </table>
+  </div>
+
+</section>
+
+</main>
+                <script>
+$(document).ready(function () {
+    $('#mytable').DataTable();
+});
+
+</script>

@@ -1,0 +1,13 @@
+<div class="pagination">
+  {{#if products.hasPrevPage}}
+    <a href="?page={{products.prevPage}}&limit={{products.limit}}">&laquo; Prev</a>
+  {{/if}}
+  
+  {{#each pages}}
+    <a href="?page={{this}}&limit={{products.limit}}" class="{{#if (eq this ../products.page)}}active{{/if}}">{{this}}</a>
+  {{/each}}
+  
+  {{#if products.hasNextPage}}
+    <a href="?page={{products.nextPage}}&limit={{products.limit}}">Next &raquo;</a>
+  {{/if}}
+</div>

@@ -1,0 +1,261 @@
+
+
+    {{!-- <h1>admin home</h1>
+   <a href="/usermanagement"> <button class="btn btn-success">user management</button></a>
+
+      <a href="/categorymanagement"> <button class="btn btn-success">category management</button></a>
+
+      <a href="/viewproductlist"> <button class="btn btn-success">product list</button></a> --}}
+
+        <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+
+                <div class="card-body">
+                  <h5 class="card-title">Reports <span>/Weekly</span></h5>
+
+                  <!-- Line Chart -->
+                  <div id="reportsChart"></div>
+
+               <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+               const mo = {{mo}}
+               const tu = {{tu}}
+               const we = {{we}}
+               const th = {{th}}
+               const fr = {{fr}}
+               const sa = {{sa}}
+               const su = {{su}}
+            var xValues = ["mon", "tue", "wed", "thu", "fri","sat","sun"];
+            var yValues = [mo, tu, we, th, fr,sa,su];
+var barColors = ["#d63384", "#6f42c1","#20c997","#ffc107","#0d6efd","#fd7e14","#dacf50"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Weekly Order Chart"
+    }
+  }
+});
+</script>
+                  <!-- End Line Chart -->
+
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
+
+            
+
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+                <div class="filter">
+                  <a style="color: blue; font-weight: bold;" class="icon" href="#" data-bs-toggle="dropdown">Filter<i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="/salesReport/?data=day">Today</a></li>
+                    <li><a class="dropdown-item" href="/salesReport/?data=month">This Month</a></li>
+                    <li><a class="dropdown-item" href="/salesReport/?data=year">This Year</a></li>
+                  </ul>
+                </div>
+              <div class="d-flex"> 
+                <div class="mt-4 ms-3">
+                  <form id="downloadFormPdf" action="/downloadpdf" method="GET">
+                       <select id="timePeriod" name="timePeriod">
+                            <option value="today">Today</option>
+                            <option value="thisMonth">This Month</option>
+                            <option value="thisYear">This Year</option>
+                       </select>
+                         <button class="me-2 btn rounded-pill border-danger btn-sm" type="submit">Download PDF</button>
+                           <i class="fa-solid fa-file-pdf fa-lg me-3" style="color: #ff0000;"></i>
+                  </form>
+
+                </div>
+                <div class="mt-4 ms-3">
+                  <form id="downloadFormExcel" action="/downloadexcel" method="GET">
+                     <select id="timePeriod" name="timePeriod">
+                       <option value="today">Today</option>
+                       <option value="thisMonth">This Month</option>
+                       <option value="thisYear">This Year</option>
+                     </select>
+                           <button class="me-2 btn rounded-pill border-success btn-sm" type="submit">Download Excel</button>
+                           <i class="fa-sharp fa-solid fa-file-excel fa-lg" style="color: #01982e;"></i>
+
+                  </form>
+
+                </div>
+             </div> 
+                <div class="card-body">
+                  <h5 class="card-title">Sales Report <span>|</span></h5>
+
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Order Number</th>
+                        {{!-- <th scope="col">Products</th> --}}
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each salesReportData}}
+                      <tr>
+                        <th scope="row">{{sliceDate createdAt}}</th>
+                        <td>{{_id}}</td>
+                        {{!-- <td><a href="#" class="text-primary">At praesentium minu</a></td> --}}
+                        <td>₹{{totalAmount}}</td>
+                        <td>{{paymentType}}</td>
+                        <td><span class="badge bg-success">{{orderStatus}}</span></td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Recent Sales -->
+
+
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          <!-- Website Traffic -->
+          <div class="card">
+
+            <div class="card-body pb-0">
+              <h5 class="card-title">Order Status <span></span></h5>
+
+              <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  echarts.init(document.querySelector("#trafficChart")).setOption({
+                    tooltip: {
+                      trigger: 'item'
+                    },
+                    legend: {
+                      top: '5%',
+                      left: 'center'
+                    },
+                    series: [{
+                      
+                      type: 'pie',
+                      radius: ['40%', '70%'],
+                      avoidLabelOverlap: false,
+                      label: {
+                        show: false,
+                        position: 'center'
+                      },
+                      emphasis: {
+                        label: {
+                          show: true,
+                          fontSize: '18',
+                          fontWeight: 'bold'
+                        }
+                      },
+                      labelLine: {
+                        show: false
+                      },
+                      data: [{
+                          value: {{dis}},
+                          name: 'Dispatched'
+                        },
+                        {
+                          value: {{del}},
+                          name: 'Delivered'
+                        },
+                        {
+                          value: {{pen}},
+                          name: 'Pending'
+                        },
+                        {
+                          value: {{can}},
+                          name: 'Cancelled'
+                        },
+                        {
+                          value: {{ord}},
+                          name: 'Ordered'
+                        }
+                      ]
+                    }]
+                  });
+                });
+              </script>
+
+            </div>
+          </div><!-- End Website Traffic -->
+
+
+
+        </div><!-- End Right side columns -->
+
+      </div>
+    </section>
+
+<script>
+  // pdf
+  document.getElementById('downloadFormPdf').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent form submission
+    
+    const selectedTimePeriod = document.getElementById('timePeriod').value; // Get selected time period from dropdown
+    
+    // Make a GET request to the server with selected time period as query parameter
+    window.location.href = `/downloadpdf?timePeriod=${selectedTimePeriod}`;
+  });
+
+//excel
+  document.getElementById('downloadFormExcel').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent form submission
+    
+    const selectedTimePeriod = document.getElementById('timePeriod').value; // Get selected time period from dropdown
+    
+    // Make a GET request to the server with selected time period as query parameter
+    window.location.href = `/downloadexcel?timePeriod=${selectedTimePeriod}`;
+  });
+</script>

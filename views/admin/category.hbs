@@ -1,0 +1,142 @@
+
+ <main id="main" class="main">
+
+<!--add-->
+<div class="d-flex">
+<div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Add category:</h3>
+      <form action="/addcategory" method="post">
+       <div class="d-inline-block align-middle">
+         <input type="text" class="form-control w-100" name="category" placeholder="Enter category name" aria-label="Enter category name" aria-describedby="button-addon2">
+
+       </div>
+        <div class="d-inline-block align-middle">
+                    <button class="btn btn-primary " type="submit" id="add-btn">Add category</button>
+                  
+
+        </div>
+          <p class="ms-2 mt-2 text-danger">{{failmessage}}</p>
+      </form>
+       <div style="height: 50px;">
+        <p class="fw-bold">{{addcategorymessage}}</p>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!--delete-->
+{{!-- 
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title mb-2">Delete category:</h3>
+      <form action="/deletecategory" method="POST">
+        <div class="d-inline-block align-middle"  >
+            
+          <select class="form-select "   name="category" id="category-dropdown" aria-label="Select Category">
+            <option  value="" selected disabled>Select a category...</option>
+           {{#each categoryList}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+          </select>
+          
+        </div>
+        
+ <div class="d-inline-block align-middle">
+          <button class="btn btn-danger" type="submit" id="delete-btn">Delete</button>
+        </div>
+       
+      </form>
+    </div>
+    <div style="height: 50px;">
+        <p class="fw-bold">{{deletecategorymessage}}</p>
+    </div>
+  </div>
+</div>  --}}
+
+{{!-- 
+<!---edit-->
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title mb-2">Edit category:</h3>
+      <form action="/editcategory" method="POST">
+        <div class="d-inline-block align-middle"  >
+            
+          <select class="form-select "   name="category" id="category-dropdown" aria-label="Select Category">
+            <option  value="" selected disabled>Select a category...</option>
+           {{#each categoryList}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+          </select>
+          
+        </div>
+        <div class="d-inline-block align-middle">
+          <button class="btn btn-primary"  type="submit" id="edit-btn" >Edit</button>
+        </div>
+       
+      </form>
+    </div>
+    <div style="height: 50px;">
+        <p class="fw-bold">{{editcategorymessage}}</p>
+    </div>
+  </div>
+</div>
+
+</div> --}}
+
+<!--table category-->
+<div>
+  <div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Category List</h3>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Category Name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Status</th>
+
+    </tr>
+  </thead>
+  <tbody class="text_center">
+    {{#each categoryList}}
+    <tr >
+      <td >{{name}}</td>
+         <td><a href="/editcategory/{{_id}}"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #135090;"></i></a></td>
+                        <td>
+               {{#if isListed}}
+                         <a
+                         class="btn btn-success btn-sm" id="block"
+                         href="/unlistcategory/{{_id}}"
+                         onclick="return  confirm('are you want to unlist product {{name}}?')"
+                         >Listed</a>
+               {{else}}  <a
+                          class="btn btn-danger btn-sm" id="block"
+                          href="/listcategory/{{_id}}"
+                          onclick="return  confirm('are you want to list product {{name}}?')"
+                         >Unlisted</a>
+                       
+               {{/if}}
+                         </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+</div>
+</div>
+    </div>
+  </div>
+
+</div>
+
+</main>
+
+
+

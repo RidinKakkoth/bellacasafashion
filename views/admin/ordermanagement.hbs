@@ -1,0 +1,163 @@
+<main id="main" class="main">
+
+  <script>
+
+  </script>
+
+  <div class="container mt-5 mb-5">
+    <!-- Recent Sales -->
+    <div class="col-12">
+      <div class="card recent-sales overflow-auto">
+
+        <div class="card-body">
+          <h5 class="card-title">User Orders</h5>
+
+          <table
+            id="oredertable"
+            class="table table-striped table-hover "
+          >
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Order No</th>
+                <th scope="col">Payment</th>
+                <th scope="col">Payment Status</th>
+                <th scope="col">Amount</th>
+                <th scope="col">order Status</th>
+                <th scope="col">Status</th>
+                {{!-- <th scope="col">Status</th> --}}
+                <th scope="col">View Products</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each orderHistoryData}}
+                <tr>
+                  <td scope="row">{{sliceDate createdAt}}</td>
+                  <td>{{_id}}</td>
+                  <td>{{paymentType}}</td>
+                  <td>{{paymentStatus}}</td>
+                  <td>₹{{totalAmount}}</td>
+                  <td>
+                    <div class="dropdown">
+                      <button
+                        class="btn dropdown-toggle btn-sm"
+                        style="width: 100px;"
+                        type="button"
+                        id="dropdownMenuButton2"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Manage
+                      </button>
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton2"
+                      >
+                        <li> <a
+                          class="dropdown-item text-danger text-decoration-none"
+                         style="cursor: pointer;"
+                          onclick="  
+ cancelOrder('{{_id}}','{{orderStatus}}')"
+                        >Cancel</a></li>
+                        <li><a
+                        style="cursor: pointer;"
+                            class="dropdown-item text-success text-decoration-none"
+                            onclick="  
+ dispatchOrder('{{_id}}','{{orderStatus}}')"
+                            
+                          >Dispatch</a></li>
+                        <li><a
+                        style="cursor: pointer;"
+                            class="dropdown-item text-warning text-decoration-none"
+                            {{!-- href="/dispatch/{{_id}}" --}}
+                          >Pending</a></li>
+                        <li><a
+                        style="cursor: pointer;"
+                            class="dropdown-item text-success text-decoration-none"
+                            onclick="  
+ deliverOrder('{{_id}}','{{orderStatus}}')"
+                            
+                          >Deliver</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>{{#isEqual orderStatus "cancelled"}}
+                            <p class="text-danger fw-bold">{{orderStatus}}</p> 
+                            {{else}}
+
+                            <p class="text-success fw-bold">{{orderStatus}}</p> 
+                            {{/isEqual}}
+                    </td>
+                  {{!-- <td>
+
+                    {{#isEqual orderStatus "ordered"}}
+                      <button id="status" class="badge bg-warning">
+                        <a
+                          class="text-white"
+                          style="text-decoration: none;"
+                          onclick="  return  confirm('are you want to cancel order?'),
+ cancelOrder('{{_id}}','{{orderStatus}}')"
+                        >Cancel Order</a>
+
+                      </button>
+                    {{else}}
+                      <button id="status" class="badge bg-danger">
+                        <a
+                          class="text-white"
+                          style="text-decoration: none;"
+                        >Cancelled</a>
+
+                      </button>
+                    {{/isEqual}}
+
+                  </td> --}}
+                  <td><button class="badge bg-success"><a
+                        class="text-white"
+                        style="text-decoration: none;"
+                        href="/viewuserorders/{{_id}}"
+                      >View Details</a>
+                    </button></td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div><!-- End Recent Sales -->
+  </div>
+
+</main>
+
+<script>
+  function cancelOrder(id,orderStatus){ 
+  if(orderStatus=='cancelled'||orderStatus=='dispatched'||orderStatus=="delivered"){ location.reload() }
+  else { $.ajax({ url:"/admincancelorder", data:{ orderId:id }, method:"post",
+  success:(response)=>{ 
+  location.reload() } }) } }
+
+  function dispatchOrder(id,orderStatus){ 
+  if(orderStatus=='cancelled'||orderStatus=='dispatched'||orderStatus=="delivered"){ location.reload() }
+  else { $.ajax({ url:"/dispatchorder", data:{ orderId:id }, method:"post",
+  success:(response)=>{ 
+  location.reload() } }) } }
+
+  function deliverOrder(id,orderStatus){ 
+  if(orderStatus=='cancelled'||orderStatus=='dispatched'||orderStatus=="delivered"){ location.reload() }
+  else { $.ajax({ url:"/deliverorder", data:{ orderId:id }, method:"post",
+  success:(response)=>{ 
+  location.reload() } }) } }
+ 
+
+
+
+
+
+</script>
+                <script>
+$(document).ready(function () {
+    $('#oredertable').DataTable();
+});
+
+</script>
