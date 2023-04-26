@@ -336,7 +336,7 @@ const userProfile=async(req,res)=>{
     console.log(userData);
    
     
-          res.render("userprofile",{user:true,userName,userData})
+          res.render("userprofile",{user:true,userName,userData,cartNumber})
   }
   catch(error){
     console.log(error);
@@ -403,6 +403,7 @@ const userHome = async (req, res) => {
      if(req.session.user_id){
 
        cartNumber=req.session.cartNumber
+       userName= req.session.user_Name
      }
      else
 {

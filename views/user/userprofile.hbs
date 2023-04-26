@@ -418,7 +418,7 @@ $("#myAddressForm").submit((e)=>{
     method:"put",
     data:$("#myAddressForm").serialize(),
     success:(response)=>{
-      if(response.message==" profile updated successfully"){
+      if(response.message=="profile updated successfully"){
         swal({
           text: response.message,
           timer: 3000,

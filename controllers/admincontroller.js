@@ -154,7 +154,7 @@ const loadDashboard = async (req, res) => {
   }
 
 
-
+    req.session.chartData={ord,can,pen,dis,del,mo,tu,we,th,fr,sa,su}
 
     res.render("dashboard",{admin:true,salesReportData,ord,can,pen,dis,del,mo,tu,we,th,fr,sa,su,adminMail});
   } catch (error) {
@@ -194,8 +194,8 @@ const salesReport=async(req,res)=>{
         // const addressData= salesReportData.map((i)=>{
         //   return i.address
         // })
-
-        res.render("dashboard",{salesReportData,admin:true})
+        const {ord,can,pen,dis,del,mo,tu,we,th,fr,sa,su}=req.session.chartData
+        res.render("dashboard",{salesReportData,admin:true,ord,can,pen,dis,del,mo,tu,we,th,fr,sa,su})
 
     }
     else if(salesData == "month"){
@@ -209,16 +209,22 @@ const salesReportData = await order.find({
   }
 });
 
-res.render("dashboard",{salesReportData,admin:true})
-    }
-    else if(salesData == "year"){
+
+
+const {ord,can,pen,dis,del,mo,tu,we,th,fr,sa,su}=req.session.chartData
+res.render("dashboard",{salesReportData,admin:true,ord,can,pen,dis,del,mo,tu,we,th,fr,sa,su})    }
+
+else if(salesData == "year"){
       const salesReportData = await order.find({
         $expr: {
           $eq: [{ $year: '$createdAt' }, currentYear] // Compare year
         }
       });
-      res.render("dashboard",{salesReportData,admin:true})
+  
+    
 
+      const {ord,can,pen,dis,del,mo,tu,we,th,fr,sa,su}=req.session.chartData
+      res.render("dashboard",{salesReportData,admin:true,ord,can,pen,dis,del,mo,tu,we,th,fr,sa,su})
     }
   
   } catch (error) {
