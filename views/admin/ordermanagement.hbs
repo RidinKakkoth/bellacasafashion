@@ -132,7 +132,7 @@
 
 <script>
   function cancelOrder(id,orderStatus){ 
-  if(orderStatus=='cancelled'||orderStatus=='dispatched'||orderStatus=="delivered"){ location.reload() }
+  if(orderStatus=='cancelled'||orderStatus=="delivered"){ location.reload() }
   else { $.ajax({ url:"/admincancelorder", data:{ orderId:id }, method:"post",
   success:(response)=>{ 
   location.reload() } }) } }
@@ -144,7 +144,7 @@
   location.reload() } }) } }
 
   function deliverOrder(id,orderStatus){ 
-  if(orderStatus=='cancelled'||orderStatus=='dispatched'||orderStatus=="delivered"){ location.reload() }
+  if(orderStatus=='cancelled'||orderStatus=="delivered"){ location.reload() }
   else { $.ajax({ url:"/deliverorder", data:{ orderId:id }, method:"post",
   success:(response)=>{ 
   location.reload() } }) } }

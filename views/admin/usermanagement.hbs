@@ -6,9 +6,9 @@
   <div class="container mt-5">
 
     <div class="d-flex align-items-center">
-      <a href="/adduserdata" class="btn btn-success ms-auto">
+      {{!-- <a href="/adduserdata" class="btn btn-success ms-auto">
         Add User Data
-      </a>
+      </a> --}}
     </div>
 
     <table id="mytable" class="table table-white table-striped mt-3">
@@ -18,7 +18,7 @@
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
-          <th scope="col">Edit</th>
+          {{!-- <th scope="col">Edit</th> --}}
           <th scope="col">Block</th>
         </tr>
       </thead>
@@ -29,11 +29,11 @@
             <td>{{name}}</td>
             <td>{{email}}</td>
             <td>{{phone}}</td>
-            <td>
+            {{!-- <td>
               <a class="btn btn-primary btn-sm" href="/edituser/{{_id}} "><i
                   class="fa-solid fa-user-pen"
                 ></i></a>
-              </td>
+              </td> --}}
               <td>
                 {{#if isBlocked}}
               <a

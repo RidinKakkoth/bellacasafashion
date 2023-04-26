@@ -421,72 +421,72 @@ const loadAddUser = async (req, res) => {
 
 //add new user
 
-const addUser = async (req, res) => {
-  try {
-    const { name, email, phone, password } = req.body;
-    const hashPassword = await bcrypt.hash(password, 10);
-    const userCred = await user.findOne({ email });
+// const addUser = async (req, res) => {
+//   try {
+//     const { name, email, phone, password } = req.body;
+//     const hashPassword = await bcrypt.hash(password, 10);
+//     const userCred = await user.findOne({ email });
 
-    if (userCred) {
-      res.render("adduser", { failmessage: "user already exists",admin:true });
-      return;
-    }
-    console.log(name);
-    const newUser = new user({
-      name,
-      email,
-      phone,
-      password: hashPassword,
-      isVerified: 1,
-    });
-    const adduser = await newUser.save();
-    if (adduser) {
-      res.redirect("/usermanagement");
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+//     if (userCred) {
+//       res.render("adduser", { failmessage: "user already exists",admin:true });
+//       return;
+//     }
+//     console.log(name);
+//     const newUser = new user({
+//       name,
+//       email,
+//       phone,
+//       password: hashPassword,
+//       isVerified: 1,
+//     });
+//     const adduser = await newUser.save();
+//     if (adduser) {
+//       res.redirect("/usermanagement");
+//     }
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 //load user editing page
 
-const loadEditUser = async (req, res) => {
-  try {
-    let user_id = req.params.id;
-    // console.log(user_id);
-    if (user_id) {
-      const userdata = await user.findById(user_id);
-      //  console.log(userdata);
-      res.render("edituser", { userdata:userdata});
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// const loadEditUser = async (req, res) => {
+//   try {
+//     let user_id = req.params.id;
+//     // console.log(user_id);
+//     if (user_id) {
+//       const userdata = await user.findById(user_id);
+//       //  console.log(userdata);
+//       res.render("edituser", { userdata:userdata});
+//     }
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 //update edited details
 
-const updateUserdata = async (req, res) => {
-  try {
-    const { name, phone, email } = req.body;
-    const updateUser_id = req.params.id;
-    const updatedData = await user.updateOne(
-      {_id:updateUser_id },
-      {
-        $set: {
-          name,
-          email,
-          phone,
-        },
-      }
-    );
-    if (updatedData) {
-      res.redirect("/usermanagement");
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// const updateUserdata = async (req, res) => {
+//   try {
+//     const { name, phone, email } = req.body;
+//     const updateUser_id = req.params.id;
+//     const updatedData = await user.updateOne(
+//       {_id:updateUser_id },
+//       {
+//         $set: {
+//           name,
+//           email,
+//           phone,
+//         },
+//       }
+//     );
+//     if (updatedData) {
+//       res.redirect("/usermanagement");
+//     }
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 //block a user
 
@@ -552,9 +552,9 @@ module.exports = {
   downloadExcel,
   userManagement,
   loadAddUser,
-  addUser,
-  loadEditUser,
-  updateUserdata,
+  // addUser,
+  // loadEditUser,
+  // updateUserdata,
   blockUser,
   adminSignOut,
   unblockUser,

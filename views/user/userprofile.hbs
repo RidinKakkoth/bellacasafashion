@@ -388,7 +388,7 @@ $("#myForm").submit((e)=>{
           timer: 3000,
           showConfirmButton: false
         }).then(()=>{
-          $("#myForm").modal("hide");
+          $("#myModal").modal("hide");
         });
       }
       else{
@@ -407,7 +407,7 @@ $("#myForm").submit((e)=>{
 
 
 
-    /*--- ajax for address change ----*/
+    /*--- ajax for address changes ----*/
 $("#myAddressForm").submit((e)=>{
 
   e.preventDefault() 
@@ -424,7 +424,7 @@ $("#myAddressForm").submit((e)=>{
           timer: 3000,
           showConfirmButton: false
         }).then(()=>{
-          $("#myAddressForm").modal("hide");
+          $("#myAddressModal").modal("hide");
         });
       }
       else{

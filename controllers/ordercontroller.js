@@ -36,6 +36,10 @@ const placeorder=async(req,res)=>{
           
           deleteCart=await cart.findOneAndDelete({userId:userId})
           req.session.cartNumber=0;
+          const couponCode=req.session.couponCode
+        
+          await coupon.findOneAndUpdate({couponCode:couponCode},{users:{userId:userId,couponStatus:"invalid"}})
+          await coupon.findOneAndUpdate({couponCode:couponCode},{$inc:{couponLimit:-1}})
         
         const confirmationData=await order.findOne({_id:orderData._id}).populate("products.productId").lean()
         req.session.confirmationData=confirmationData
@@ -332,7 +336,7 @@ const viewOrderData= async(req,res)=>{
                 {
                    const orderId=req.body.orderId
          
-                     const status= await order.findOneAndUpdate({_id:orderId},{$set:{orderStatus:"delivered"}})
+                     const status= await order.findOneAndUpdate({_id:orderId},{$set:{orderStatus:"delivered",paymentStatus:"success"}})
                 
                      res.json({ message: 'successfull' });
        

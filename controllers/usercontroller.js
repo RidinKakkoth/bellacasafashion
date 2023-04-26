@@ -407,6 +407,7 @@ const userHome = async (req, res) => {
      else
 {
   cartNumber=null
+  userName=null
 }     
     res.render("userhome", { user: true,cartNumber, productsData,userName,bigBannerData,smalllBannerData});
    

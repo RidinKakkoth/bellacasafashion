@@ -71,7 +71,7 @@
                       <a
                         class="text-white"
                         style="text-decoration: none;"
-                        onclick="  return  confirm('are you want to cancel order?'),
+                        onclick="  
  cancelOrder('{{_id}}','{{orderStatus}}')"
                       >Cancel Order</a>
                     </button>
@@ -117,11 +117,37 @@
 
 </script>
 
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+
 <script>
 
-  function cancelOrder(id,orderStatus){ console.log(orderStatus)
-  if(orderStatus=='cancelled'||orderStatus=='dispatched'){ location.reload() }
-  else { $.ajax({ url:"/cancelorder", data:{ orderId:id }, method:"post",
-  success:(response)=>{ location.reload() } }) } }
+  function cancelOrder(id,orderStatus){ 
+
+  if(orderStatus=='cancelled'||orderStatus=='delivered'){ location.reload() }
+
+
+  else {
+     Swal.fire({
+                title: "Are you sure want to delivery this order",
+                showDenyButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: "No",
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Listed!', '', 'success')
+
+                    $.ajax({ url:"/cancelorder", data:{ orderId:id }, method:"post",
+  success:(response)=>{ location.reload() } })
+                } else if (result.isDenied) {
+
+                }
+            })
+  }
+  }
 
 </script>
+
+
+  
