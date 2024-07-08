@@ -231,12 +231,11 @@ const newPassword=async(req,res)=>{
 
 //---------------------------------------------------------------------------------------
 var newUser;
+
 const registerUser = async (req, res) => {
   try {
      const { name, email, phone, password } = req.body;
     const hashPassword = await bcrypt.hash(password, 10);
-
-    
 
      newUser = new user({
       name,
